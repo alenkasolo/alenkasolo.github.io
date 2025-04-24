@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation - Sarah & Michael</title>
+  <title>Wedding Invitation - LA HONG HAI & VU HANH THU</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap');
-    
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: 'Cormorant Garamond', serif;
       background-color: #f9f7f4;
@@ -20,13 +20,13 @@
       line-height: 1.6;
       font-size: 16px;
     }
-    
+
     .container {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
     }
-    
+
     .invitation-card {
       background-color: #fff;
       border-radius: 10px;
@@ -34,23 +34,16 @@
       overflow: hidden;
       position: relative;
       margin-bottom: 40px;
-      opacity: 0;
-      transform: translateY(20px);
       transition: opacity 1s ease, transform 1s ease;
       max-width: 500px;
       margin-left: auto;
       margin-right: auto;
     }
-    
-    .invitation-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
+
     .header-with-image {
       width: 100%;
-      height: 350px;
-      background-image: url('/api/placeholder/500/350');
+      height: 100vh;
+      min-height: 350px;
       background-size: cover;
       background-position: center;
       position: relative;
@@ -59,9 +52,9 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      position: relative;
+      overflow: hidden;
     }
-    
+
     .header-with-image::before {
       content: '';
       position: absolute;
@@ -71,29 +64,71 @@
       bottom: 0;
       background: rgba(0, 0, 0, 0.4);
       z-index: 1;
+      animation: fadeIn 2s ease-in-out;
     }
-    
+
     .header-with-image .names,
     .header-with-image .invitation-text {
       position: relative;
       z-index: 2;
       color: #fff;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transform: translateY(30px);
     }
-    
-    .header {
-      background: linear-gradient(135deg, #e8d6c3 0%, #d4b694 100%);
-      padding: 30px;
-      text-align: center;
+
+    .header-with-image .names {
+      animation: slideUp 1.5s ease-out 0.5s forwards;
     }
-    
+
+    .header-with-image .invitation-text {
+      animation: slideUp 1.5s ease-out 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes zoomIn {
+      0% { transform: scale(1.2); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .bg-image-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+    }
+
+    .bg-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: zoomIn 2.5s ease-out;
+    }
+
     .floral-border {
       height: 30px;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='20' viewBox='0 0 200 40'%3E%3Cpath d='M0,20 Q50,0 100,20 Q150,40 200,20' fill='none' stroke='%23d4b694' stroke-width='2'/%3E%3C/svg%3E");
       background-repeat: repeat-x;
       background-size: 100px 20px;
     }
-    
+
     .names {
       font-family: 'Great Vibes', cursive;
       font-size: 4rem;
@@ -101,66 +136,66 @@
       margin-bottom: 10px;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
-    
+
     .invitation-text {
       margin: 10px 0;
       font-size: 1.2rem;
     }
-    
+
     .content {
       padding: 40px;
       text-align: center;
     }
-    
+
     .date-venue {
       margin: 30px 0;
     }
-    
+
     .date-venue h2 {
       font-family: 'Great Vibes', cursive;
       font-size: 2rem;
       margin-bottom: 5px;
       color: #b38867;
     }
-    
+
     .date-venue p {
       font-size: 1.2rem;
       margin-bottom: 10px;
     }
-    
+
     .details {
       margin: 30px 0;
       padding: 20px;
       border-top: 1px solid #e8d6c3;
       border-bottom: 1px solid #e8d6c3;
     }
-    
+
     .details h3 {
       color: #b38867;
       margin-bottom: 10px;
     }
-    
+
     .rsvp-section {
       margin-top: 40px;
     }
-    
+
     .rsvp-form {
       display: flex;
       flex-direction: column;
       max-width: 400px;
       margin: 0 auto;
     }
-    
+
     .form-group {
       margin-bottom: 20px;
     }
-    
+
     label {
       display: block;
       margin-bottom: 5px;
       font-weight: 600;
     }
-    
+
     input, select, textarea {
       width: 100%;
       padding: 10px;
@@ -169,7 +204,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 1rem;
     }
-    
+
     .btn {
       background: linear-gradient(135deg, #d4b694 0%, #b38867 100%);
       color: white;
@@ -182,41 +217,41 @@
       font-family: 'Cormorant Garamond', serif;
       font-weight: 600;
     }
-    
+
     .btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(179, 136, 103, 0.3);
     }
-    
+
     .countdown {
       margin: 30px 0;
       text-align: center;
     }
-    
+
     .countdown-container {
       display: flex;
       justify-content: center;
       gap: 20px;
     }
-    
+
     .countdown-item {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    
+
     .countdown-value {
       font-size: 2rem;
       font-weight: 600;
       color: #b38867;
     }
-    
+
     .countdown-label {
       font-size: 0.9rem;
       text-transform: uppercase;
       color: #888;
     }
-    
+
     .thank-you-message {
       display: none;
       text-align: center;
@@ -225,48 +260,48 @@
       border-radius: 5px;
       margin-top: 20px;
     }
-    
+
     .footer {
       text-align: center;
       margin-top: 20px;
       color: #888;
       font-size: 0.9rem;
     }
-    
+
     /* Mobile-focused styles */
     @media (max-width: 600px) {
       body {
         font-size: 14px;
       }
-      
+
       .container {
         padding: 10px;
       }
-      
+
       .names {
         font-size: 2.5rem;
       }
-      
+
       .content {
         padding: 15px;
       }
-      
+
       .countdown-container {
         gap: 8px;
       }
-      
+
       .countdown-value {
         font-size: 1.3rem;
       }
-      
+
       .btn {
         padding: 10px 20px;
       }
-      
+
       .form-group {
         margin-bottom: 15px;
       }
-      
+
       .header-with-image {
         height: 250px;
       }
@@ -274,167 +309,190 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="invitation-card">
-      <div class="header-with-image">
-        <div class="names">Sarah & Michael</div>
-        <p class="invitation-text">REQUEST THE PLEASURE OF YOUR COMPANY</p>
-        <p class="invitation-text">AT THE CELEBRATION OF THEIR MARRIAGE</p>
+<div class="container">
+  <div class="invitation-card">
+    <div class="header-with-image">
+      <div class="bg-image-container">
+        <img src="IMG_3123.JPG" alt="Wedding background" class="bg-image">
       </div>
-      
-      <div class="floral-border"></div>
-      
-      <div class="content">
-        <div class="date-venue">
-          <h2>The Wedding</h2>
-          <p>Saturday, August 12, 2023</p>
-          <p>Ceremony: 3:00 PM</p>
-          <p>Grand Pavilion, Rosewood Gardens</p>
-          <p>123 Blossom Lane, Maplewood</p>
-        </div>
-        
-        <div class="details">
-          <h3>Attire</h3>
-          <p>Formal / Black Tie Optional</p>
-          
-          <h3>Reception</h3>
-          <p>Dinner & Dancing to follow the ceremony</p>
-          
-          <h3>Accommodations</h3>
-          <p>A block of rooms has been reserved at the Rosewood Hotel.</p>
-          <p>Please mention the "Smith-Johnson Wedding" when booking.</p>
-        </div>
-        
-        <div class="countdown">
-          <h3>Countdown to Our Special Day</h3>
-          <div class="countdown-container">
-            <div class="countdown-item">
-              <span class="countdown-value" id="days">0</span>
-              <span class="countdown-label">Days</span>
-            </div>
-            <div class="countdown-item">
-              <span class="countdown-value" id="hours">0</span>
-              <span class="countdown-label">Hours</span>
-            </div>
-            <div class="countdown-item">
-              <span class="countdown-value" id="minutes">0</span>
-              <span class="countdown-label">Minutes</span>
-            </div>
-            <div class="countdown-item">
-              <span class="countdown-value" id="seconds">0</span>
-              <span class="countdown-label">Seconds</span>
-            </div>
+      <div class="names">
+        LA HONG HAI
+        <br>
+        &
+        <br>
+        VU HANH THU</div>
+      <p class="invitation-text">REQUEST THE PLEASURE OF YOUR COMPANY</p>
+      <p class="invitation-text">AT THE CELEBRATION OF THEIR MARRIAGE</p>
+    </div>
+
+    <div class="floral-border"></div>
+
+    <div class="content">
+      <div class="date-venue">
+        <h2>The Wedding</h2>
+        <p>Saturday, August 12, 2023</p>
+        <p>Ceremony: 3:00 PM</p>
+        <p>Grand Pavilion, Rosewood Gardens</p>
+        <p>123 Blossom Lane, Maplewood</p>
+      </div>
+
+      <div class="details">
+        <h3>Attire</h3>
+        <p>Formal / Black Tie Optional</p>
+
+        <h3>Reception</h3>
+        <p>Dinner & Dancing to follow the ceremony</p>
+
+        <h3>Accommodations</h3>
+        <p>A block of rooms has been reserved at the Rosewood Hotel.</p>
+        <p>Please mention the "Smith-Johnson Wedding" when booking.</p>
+      </div>
+
+      <div class="countdown">
+        <h3>Countdown to Our Special Day</h3>
+        <div class="countdown-container">
+          <div class="countdown-item">
+            <span class="countdown-value" id="days">0</span>
+            <span class="countdown-label">Days</span>
           </div>
-        </div>
-        
-        <div class="rsvp-section">
-          <h2>RSVP</h2>
-          <p>Please respond by July 15, 2023</p>
-          
-          <form class="rsvp-form" id="rsvpForm">
-            <div class="form-group">
-              <label for="name">Full Name</label>
-              <input type="text" id="name" name="name" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="attendance">Will you attend?</label>
-              <select id="attendance" name="attendance" required>
-                <option value="">Please select</option>
-                <option value="yes">Joyfully Accept</option>
-                <option value="no">Regretfully Decline</option>
-              </select>
-            </div>
-            
-            <div class="form-group">
-              <label for="guests">Number of Guests (Including Yourself)</label>
-              <input type="number" id="guests" name="guests" min="1" max="5" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="dietary">Dietary Restrictions</label>
-              <textarea id="dietary" name="dietary" rows="3"></textarea>
-            </div>
-            
-            <button type="submit" class="btn">Submit RSVP</button>
-          </form>
-          
-          <div class="thank-you-message" id="thankYouMessage">
-            <h3>Thank You!</h3>
-            <p>Your RSVP has been received. We're looking forward to celebrating with you!</p>
+          <div class="countdown-item">
+            <span class="countdown-value" id="hours">0</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="minutes">0</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="seconds">0</span>
+            <span class="countdown-label">Seconds</span>
           </div>
         </div>
       </div>
-      
-      <div class="floral-border"></div>
-      
-      <div class="footer">
-        <p>Sarah & Michael</p>
-        <p>#SmithJohnsonWedding</p>
+
+      <div class="rsvp-section">
+        <h2>RSVP</h2>
+        <p>Please respond by July 15, 2023</p>
+
+        <form class="rsvp-form" id="rsvpForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="attendance">Will you attend?</label>
+            <select id="attendance" name="attendance" required>
+              <option value="">Please select</option>
+              <option value="yes">Joyfully Accept</option>
+              <option value="no">Regretfully Decline</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="guests">Number of Guests (Including Yourself)</label>
+            <input type="number" id="guests" name="guests" min="1" max="5" required>
+          </div>
+
+          <div class="form-group">
+            <label for="dietary">Dietary Restrictions</label>
+            <textarea id="dietary" name="dietary" rows="3"></textarea>
+          </div>
+
+          <button type="submit" class="btn">Submit RSVP</button>
+        </form>
+
+        <div class="thank-you-message" id="thankYouMessage">
+          <h3>Thank You!</h3>
+          <p>Your RSVP has been received. We're looking forward to celebrating with you!</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    // Fade in animation
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        document.querySelector('.invitation-card').classList.add('visible');
-      }, 200);
-      
-      // Countdown timer
-      const weddingDate = new Date('August 12, 2023 15:00:00').getTime();
-      
-      function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
-        
-        // If the wedding date has passed
-        if (distance < 0) {
-          document.getElementById('days').textContent = '0';
-          document.getElementById('hours').textContent = '0';
-          document.getElementById('minutes').textContent = '0';
-          document.getElementById('seconds').textContent = '0';
-          return;
-        }
-        
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-        document.getElementById('days').textContent = days;
-        document.getElementById('hours').textContent = hours;
-        document.getElementById('minutes').textContent = minutes;
-        document.getElementById('seconds').textContent = seconds;
+    <div class="floral-border"></div>
+
+    <div class="footer">
+      <p>Sarah & Michael</p>
+      <p>#SmithJohnsonWedding</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Animation and display functions
+  document.addEventListener('DOMContentLoaded', function() {
+    // Ensure the header image is properly sized on load and resize
+    function adjustHeaderHeight() {
+      const windowHeight = window.innerHeight;
+      const header = document.querySelector('.header-with-image');
+      const minHeight = 350;
+
+      // Set the header height to window height or minimum height, whichever is larger
+      header.style.height = Math.max(windowHeight, minHeight) + 'px';
+    }
+
+    // Call once on load and again on window resize
+    adjustHeaderHeight();
+    window.addEventListener('resize', adjustHeaderHeight);
+
+    // Fade in animation for the invitation card
+    setTimeout(function() {
+      document.querySelector('.invitation-card').classList.add('visible');
+    }, 200);
+
+    // Countdown timer
+    const weddingDate = new Date('August 12, 2023 15:00:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      // If the wedding date has passed
+      if (distance < 0) {
+        document.getElementById('days').textContent = '0';
+        document.getElementById('hours').textContent = '0';
+        document.getElementById('minutes').textContent = '0';
+        document.getElementById('seconds').textContent = '0';
+        return;
       }
-      
-      // Update countdown every second
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
-      
-      // RSVP form submission
-      const rsvpForm = document.getElementById('rsvpForm');
-      const thankYouMessage = document.getElementById('thankYouMessage');
-      
-      rsvpForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        // In a real application, you would send this data to a server
-        // For this example, we'll just show the thank you message
-        rsvpForm.style.display = 'none';
-        thankYouMessage.style.display = 'block';
-        
-        // You can collect form data like this:
-        // const formData = new FormData(rsvpForm);
-        // const name = formData.get('name');
-        // etc.
-      });
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = days.toString();
+      document.getElementById('hours').textContent = hours.toString();
+      document.getElementById('minutes').textContent = minutes.toString();
+      document.getElementById('seconds').textContent = seconds.toString();
+    }
+
+    // Update countdown every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // RSVP form submission
+    const rsvpForm = document.getElementById('rsvpForm');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+
+    rsvpForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // In a real application, you would send this data to a server
+      // For this example, we'll just show the thank-you message
+      rsvpForm.style.display = 'none';
+      thankYouMessage.style.display = 'block';
+
+      // You can collect form data like this:
+      // const formData = new FormData(rsvpForm);
+      // const name = formData.get('name');
+      // etc.
     });
-  </script>
+  });
+</script>
 </body>
 </html>
